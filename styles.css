@@ -9,9 +9,51 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    border: 2px solid black;
+    height: 100vh;
+    background-color: rgb(59, 115, 198);
+    overflow: hidden;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    width: 700px;
+    margin-top: 50px;
+    color: black;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 5px;
+}
+
+.container h1{
+    font-size: 1.5rem;
+    color: grey;
+    margin-bottom: 2rem;
+}
+
+
+.container .content{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.container .btn{
+    border:none;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container .btn:hover{
+    background-color: grey;
+    cursor: pointer;
 }

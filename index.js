@@ -3,21 +3,26 @@ let btn = document.getElementById("btn");
 let networkStatus = document.getElementById("networkStatus");
 let isLoading = false;
 let data = "";
+let error=null;
 
 async function fetchJoke() {
     isLoading = true;
-    updateDOM(isLoading);
+    updateDOM(isLoading,error,data);
     const jokeRaw = await fetch("https://icanhazdadjoke.com/", { headers: { Accept: 'application/json' } });
+    if(!jokeRaw.ok){
+        const error =  await jokeRaw.json()|| jokeRaw.status;
+        return Promise.reject(error)
+    }
     const jokeJSON = await jokeRaw.json();
     isLoading = false;
-    updateDOM(isLoading);
     return jokeJSON;
 }
 
 btn.addEventListener("click", (e) => {
     console.log("inside btn!!!!!!!!!!!");
     fetchJoke().then((joke) => {
-        content.innerText = joke.joke;
+        data=joke.joke;
+        updateDOM(isLoading,error,data);
     })
 })
 
@@ -25,7 +30,8 @@ btn.addEventListener("click", (e) => {
 window.addEventListener("load", (e) => {
     console.log("inside window!!!!!!!!!!!");
     fetchJoke().then((joke) => {
-        content.innerText = joke.joke;
+        data=joke.joke;
+        updateDOM(isLoading,error,data);
     })
 })
 
@@ -36,8 +42,13 @@ function emptyNode(parent) {
     }
 }
 
-function updateDOM(isLoading) {
+function updateDOM(isLoading,error,data) {
     emptyNode(content);
+    if(error){
+        content.innerText=error;
+        return;
+    }
+
     if (isLoading) {
         content.innerText = "...Loading";
     } else {
