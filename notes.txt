@@ -1,0 +1,12 @@
+Fetch - Error Handling for Failed HTTP Responses and Network Errors
+This is a quick example of how to handle both network errors and HTTP errors (4xx or 5xx) for Fetch API (fetch()) requests in a single catch() block.
+
+
+GET request with error handling
+This sends an HTTP GET request to an invalid URL on the Reqres api which is a fake online REST api used for testing, then writes the error message to the parent of the #get-request-error-handling .total element and logs the error to the console.
+
+Error Handling
+The fetch() function will automatically throw an error for network errors but not for HTTP errors such as 4xx or 5xx responses. For HTTP errors we can check the response.ok property to see if the request failed and reject the promise ourselves by calling return Promise.reject(error);. This approach means that both types of failed requests - network errors and http errors - can be handled by a single catch() block instead of needing two separate pieces of error handling code.
+
+JSON Check
+The fetch .then() callback is passed the HTTP response object when the request is completed, the function checks if the response type is JSON before parsing the response body with the response.json() method, because calling response.json() will cause an error if the response doesn't contain JSON data.
