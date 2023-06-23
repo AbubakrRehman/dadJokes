@@ -5,10 +5,11 @@ let isLoading = false;
 let data = "";
 let error = null;
 
+
 async function fetchJoke() {
     isLoading = true;
     updateDOM(isLoading, error, data);
-    const jokeRaw = await fetch("https://icanhazdadjok.com/", { headers: { Accept: 'application/json' } });
+    const jokeRaw = await fetch("https://icanhazdadjoke.com/", { headers: { Accept: 'application/json' } });
     if (!jokeRaw.ok) {
         const error = await jokeRaw.json() || jokeRaw.status;
         return Promise.reject(error)
