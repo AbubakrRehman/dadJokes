@@ -1,16 +1,17 @@
-*{
+* {
     box-sizing: 0;
     padding: 0;
     margin: 0;
 }
 
 
-html{
+html {
     font-size: 62.5%;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid red;
 }
