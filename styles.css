@@ -1,0 +1,16 @@
+*{
+    box-sizing: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+html{
+    font-size: 62.5%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
